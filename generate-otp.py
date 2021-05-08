@@ -4,7 +4,19 @@ from os import path
 
 import requests
 
-mobile_number = 0000000000
+
+def get_mobile_number():
+    result_file = open("txn_id.txt", "r")
+    number = result_file.read()
+    result_file.close()
+
+    if len(number) <= 0:
+        print("please update mobile_number.txt with your phone number")
+        raise Exception("")
+    return number
+
+
+mobile_number = get_mobile_number()
 
 
 def generate_otp(phone_number):

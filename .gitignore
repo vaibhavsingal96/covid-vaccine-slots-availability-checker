@@ -8,6 +8,8 @@ token.txt
 txn_id.txt
 logs.log
 
+.idea
+
 # C extensions
 *.so
 

@@ -2,6 +2,7 @@ import datetime
 import json
 import os
 from collections import defaultdict
+from os import path
 
 import requests
 
@@ -15,10 +16,13 @@ def log(stmt):
 
 
 def get_api_key():
-    result_file = open("token.txt", "r")
-    token = result_file.read()
-    result_file.close()
-    return token
+    if path.isfile("token.txt"):
+        result_file = open("token.txt", "r")
+        token = result_file.read()
+        result_file.close()
+        return token
+    else:
+        return ""
 
 
 api_key = get_api_key()
