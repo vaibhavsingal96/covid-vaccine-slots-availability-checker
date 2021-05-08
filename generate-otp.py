@@ -6,7 +6,7 @@ import requests
 
 
 def get_mobile_number():
-    result_file = open("txn_id.txt", "r")
+    result_file = open("mobile_number.txt", "r")
     number = result_file.read()
     result_file.close()
 

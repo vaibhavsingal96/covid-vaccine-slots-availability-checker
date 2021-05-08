@@ -74,7 +74,7 @@ def get_eligible_centers_by_age(response, age):
             date = session['date']
             age_eligible = session['min_age_limit']
             capacity = session['available_capacity']
-            if age_eligible == age and capacity > 0:
+            if age_eligible == age and capacity > 2:
                 availability.append({'date': date, 'capacity': capacity})
         if len(availability) > 0:
             eligible_sites.append(
