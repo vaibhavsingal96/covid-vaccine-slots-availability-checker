@@ -1,0 +1,1 @@
+# covid-vaccine-slots-availability-checker
