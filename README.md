@@ -1,19 +1,41 @@
 # covid-vaccine-slots-availability-checker
 
-Update your phone number in "mobile_number.txt"
+1. Update your phone number in "mobile_number.txt"
+   1. Simply enter 10 digit mobile number without any space and new lines
+1. Run following commands to generate authentication token
+    ```shell
+    python generate-otp.py
+    <enter otp received on your phone>
+    ```
+1. Run `python cowin-calendar.py` to fetch available slots
+    1. It will fetch 18+ slots in whole delhi for upcoming 7 days.
+1. A file will be created called "results.json" which will hold the output of available slots
+1. A sound notification ("Book now") is also triggered on laptop if there are available slots
 
-Run following commands
-1. python generate-otp.py
-2. enter otp received on your phone
-3. python cowin-calendar.py
-
-It will fetch 18+ slots in whole delhi for upcoming 7 days.
-
-A file will be created called "results.json" which will hold the output of available slots
-
-NOTE - refresh api-key token every 10mins using "python generate-otp.py"
+**NOTE** - refresh authentication token every 15mins using `python generate-otp.py`
 
 ## Pre requisites
 Script is designed and compatible using - 
 1. Python 2.7
 1. MacOS
+
+## Cron schedule configuration
+
+1. Open crontab using `crontab -e`
+1. Add following lines to run script every 15 seconds
+    ```shell
+    */1 * * * * cd <absolute path to script> && /usr/bin/python cowin-calendar.py
+    */1 * * * * sleep 15; cd <absolute path to script> && /usr/bin/python cowin-calendar.py
+    */1 * * * * sleep 30; cd <absolute path to script> && /usr/bin/python cowin-calendar.py
+    */1 * * * * sleep 45; cd <absolute path to script> && /usr/bin/python cowin-calendar.py
+    ```
+1. Run following commands
+   ```shell
+   cd <directory containing scripts>
+   chmod 755 cowin-calendar.py
+   chmod 755 token.txt
+   chmod 755 logs.log
+   chmod 755 results.json
+   ```
+1. After above steps, the scheduled execution will start
+1. Verify execution by checking `logs.log` file created in the same directory as script

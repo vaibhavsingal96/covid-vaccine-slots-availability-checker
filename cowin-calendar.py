@@ -74,7 +74,7 @@ def get_eligible_centers_by_age(response, age):
             date = session['date']
             age_eligible = session['min_age_limit']
             capacity = session['available_capacity']
-            if age_eligible == age and capacity > 2:
+            if age_eligible == age and capacity > 3:
                 availability.append({'date': date, 'capacity': capacity})
         if len(availability) > 0:
             eligible_sites.append(
@@ -86,7 +86,7 @@ def get_eligible_centers_by_age(response, age):
 def execute():
     date_list = []
     # district_code_list = ['265', '276']
-    # district_code_list = ['141', '140', '146', '143', '142']
+    # district_code_list = ['141', '140', '146', '143', '142', '149', '150']
     district_code_list = []
     for idx in range(0, 11):
         district_code_list.append(str(140 + idx))
