@@ -117,7 +117,7 @@ def execute():
         grouped_by_pincode[site['pin_code']].append(site)
 
     if len(grouped_by_pincode.items()) > 0:
-        os.system('afplay /System/Library/Sounds/Hero.aiff')
+        os.system('say Book Now')
     result_file = open("result.json", "w")
     result_file.write(json.dumps(grouped_by_pincode, indent=4, sort_keys=True))
     result_file.close()
