@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+result.json
+token.txt
+txn_id.txt
+logs.log
+
 # C extensions
 *.so
 
