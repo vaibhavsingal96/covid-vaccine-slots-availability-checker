@@ -1,6 +1,6 @@
 # covid-vaccine-slots-availability-checker
 
-Update your phone number in "generate-otp.py"
+Update your phone number in "mobile_number.txt"
 
 Run following commands
 1. python generate-otp.py
