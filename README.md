@@ -39,3 +39,14 @@ Script is designed and compatible using -
    ```
 1. After above steps, the scheduled execution will start
 1. Verify execution by checking `logs.log` file created in the same directory as script
+
+## Troubleshooting
+
+Q. What to do if OTP is not received?
+
+A. We can re-generate OTP only **after 3 minutes**.
+   1. Press enter to end current script run
+   1. Again run `python generate-otp.py`
+   1. Enter `y` and press enter to re-send OTP
+   1. Now Enter OTP if received
+      1. If not, repeat
