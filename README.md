@@ -19,6 +19,18 @@ Script is designed and compatible using -
 1. Python 2.7
 1. MacOS
 
+## Script setup
+1. You need to have python2.7 installed
+1. You need to install correct version of pip. Follow these steps - 
+   ```shell
+   curl https://bootstrap.pypa.io/pip/2.7/get-pip.py  -o get-pip.py
+   sudo python get-pip.py
+   ```
+1. Run following commands to install the packages
+   ```shell
+   sudo pip install requests
+   ```
+
 ## Cron schedule configuration
 
 1. Open crontab using `crontab -e`
