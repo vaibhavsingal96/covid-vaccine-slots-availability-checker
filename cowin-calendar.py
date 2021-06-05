@@ -73,9 +73,10 @@ def get_eligible_centers_by_age(response, age):
         for session in node['sessions']:
             date = session['date']
             age_eligible = session['min_age_limit']
-            capacity = session['available_capacity']
-            if age_eligible == age and capacity > 3:
-                availability.append({'date': date, 'capacity': capacity})
+            capacity_dose_1 = session['available_capacity_dose1']
+            capacity_dose_2 = session['available_capacity_dose2']
+            if age_eligible == age and (capacity_dose_1 > 2 or capacity_dose_2 > 2):
+                availability.append({'date': date, 'capacity_dose_1': capacity_dose_1, 'capacity_dose_2': capacity_dose_2})
         if len(availability) > 0:
             eligible_sites.append(
                 {'name': hospital_name, 'district_name': district_name, 'vaccine': vaccine, 'pin_code': pin_code,
