@@ -105,10 +105,11 @@ def get_eligible_centers_by_age(response, age):
 
 def execute():
     date_list = []
-    district_code_list = ['149']
-    # district_code_list = []
-    # for idx in range(0, 11):
-    #     district_code_list.append(str(140 + idx))
+    # district_code_list = ['149', '148']
+    # district_code_list = [<enter comma separated values here for manual district codes>]
+    district_code_list = []
+    for idx in range(0, 11):
+        district_code_list.append(str(140 + idx))
 
     today = datetime.datetime.now()
     for idx in range(0, 1):
