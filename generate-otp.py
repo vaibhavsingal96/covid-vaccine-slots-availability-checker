@@ -18,11 +18,20 @@ def get_mobile_number():
 
 mobile_number = get_mobile_number()
 
-
 def generate_otp(phone_number):
     url = "https://cdn-api.co-vin.in/api/v2/auth/public/generateOTP"
-    headers = {'Accept-Language': 'en_US', 'accept': 'application/json',
-               'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    headers = {
+        "Accept-Language": "en-US",
+        "Accept": "application/json",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36",
+        "Referer": "https://apisetu.gov.in/public/api/cowin/cowin-public-v2",
+        "Origin": "https://apisetu.gov.in",
+        "DNT": "1",
+        "Connection": "keep-alive",
+        "Pragma": "no-cache",
+        "Cache-Control": "no-cache",
+        "content-type": "application/json"
+    }
     body = {"mobile": "%s" % phone_number}
 
     response_object = requests.post(url, json=body, headers=headers)
@@ -34,7 +43,18 @@ def generate_otp(phone_number):
 
 def authenticate_otp(otp, txn_id):
     url = "https://cdn-api.co-vin.in/api/v2/auth/public/confirmOTP"
-    headers = {'accept': 'application/json', 'Content-Type': 'application/json'}
+    headers = {
+        "Accept-Language": "en-US",
+        "Accept": "application/json",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36",
+        "Referer": "https://apisetu.gov.in/public/api/cowin/cowin-public-v2",
+        "Origin": "https://apisetu.gov.in",
+        "DNT": "1",
+        "Connection": "keep-alive",
+        "Pragma": "no-cache",
+        "Cache-Control": "no-cache",
+        "content-type": "application/json"
+    }
     body = {'otp': '%s' % otp, 'txnId': '%s' % txn_id}
 
     response_object = requests.post(url, data=json.dumps(body), headers=headers)
