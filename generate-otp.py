@@ -55,7 +55,7 @@ def authenticate_otp(otp, txn_id):
         "Cache-Control": "no-cache",
         "content-type": "application/json"
     }
-    body = {'otp': '%s' % otp, 'txnId': '%s' % txn_id, 'secret': 'U2FsdGVkX1/fM1pnXpJIcrFeq3mieB4Z6lF/P9r7jA1AEsRp6gTa7mA7M+N/xXgHEeMYp8L5uTGMuQvTipP5PA=='}
+    body = {'otp': '%s' % otp, 'txnId': '%s' % txn_id}
 
     response_object = requests.post(url, data=json.dumps(body), headers=headers)
     print(response_object.request.body)
