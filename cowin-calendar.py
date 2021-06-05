@@ -26,11 +26,30 @@ def get_api_key():
 
 
 api_key = get_api_key()
-headers_with_api_key = {'Accept-Language': "en_US", 'accept': 'application/json',
-                        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36',
-                        'authorization': api_key}
-headers_without_api_key = {'Accept-Language': 'en_US', 'accept': 'application/json',
-                           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+headers_with_api_key = {
+    "Accept-Language": "en_US",
+    "Accept": "application/json",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36",
+    "Referer": "https://apisetu.gov.in/public/api/cowin",
+    "Origin": "https://apisetu.gov.in",
+    "DNT": "1",
+    "Connection": "keep-alive",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
+    'authorization': api_key
+}
+headers_without_api_key = {
+    "Accept-Language": "en_US",
+    "Accept": "application/json",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36",
+    "Referer": "https://apisetu.gov.in/public/api/cowin/cowin-public-v2",
+    "Origin": "https://apisetu.gov.in",
+    "DNT": "1",
+    "Connection": "keep-alive",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
+    "content-type": "application/json"
+}
 
 calendar_url_without_api_key = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=%s&date=%s"
 calendar_url_with_api_key = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=%s&date=%s"
@@ -86,8 +105,8 @@ def get_eligible_centers_by_age(response, age):
 
 def execute():
     date_list = []
-    # district_code_list = ['265', '276']
-    # district_code_list = ['141', '140', '146', '143', '142', '149', '150']
+    # district_code_list = ['149', '148']
+    # district_code_list = [<enter comma separated values here for manual district codes>]
     district_code_list = []
     for idx in range(0, 11):
         district_code_list.append(str(140 + idx))
@@ -111,7 +130,7 @@ def execute():
                 log("{}".format(e.message))
                 log("failed - " + str(district_code) + " - " + str(date))
 
-    log("Completed - " + datetime.datetime.now().__str__())
+    log("Completed - " + today.__str__())
 
     grouped_by_pincode = defaultdict(list)
     for site in all_eligible_sites:
@@ -119,6 +138,7 @@ def execute():
 
     if len(grouped_by_pincode.items()) > 0:
         os.system('say Book Now')
+        log("Slots available - " + today.__str__())
     result_file = open("result.json", "w")
     result_file.write(json.dumps(grouped_by_pincode, indent=4, sort_keys=True))
     result_file.close()
