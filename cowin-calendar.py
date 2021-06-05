@@ -38,7 +38,7 @@ calendar_url_with_api_key = "https://cdn-api.co-vin.in/api/v2/appointment/sessio
 pincode_url_without_api_key = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=%s&date=%s"
 pincode_url_with_api_key = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/findByPin?pincode=%s&date=%s"
 
-if len(api_key) >= 0:
+if len(api_key) > 0:
     final_headers = headers_with_api_key
     final_calendar_url = calendar_url_with_api_key
     final_pincode_url = pincode_url_with_api_key
