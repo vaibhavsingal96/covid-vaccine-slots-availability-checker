@@ -19,20 +19,20 @@ def get_mobile_number():
 mobile_number = get_mobile_number()
 
 def generate_otp(phone_number):
-    url = "https://cdn-api.co-vin.in/api/v2/auth/public/generateOTP"
+    url = "https://cdn-api.co-vin.in/api/v2/auth/generateOTP"
     headers = {
         "Accept-Language": "en-US",
         "Accept": "application/json",
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36",
-        "Referer": "https://apisetu.gov.in/public/api/cowin/cowin-public-v2",
-        "Origin": "https://apisetu.gov.in",
+        "Referer": "https://selfregistration.cowin.gov.in/",
+        "Origin": "https://selfregistration.cowin.gov.in",
         "DNT": "1",
         "Connection": "keep-alive",
         "Pragma": "no-cache",
         "Cache-Control": "no-cache",
         "content-type": "application/json"
     }
-    body = {"mobile": "%s" % phone_number}
+    body = {"mobile": "%s" % phone_number, "secret": "U2FsdGVkX1+z/4Nr9nta+2DrVJSv7KS6VoQUSQ1ZXYDx/CJUkWxFYG6P3iM/VW+6jLQ9RDQVzp/RcZ8kbT41xw=="}
 
     response_object = requests.post(url, json=body, headers=headers)
     print("Status code: " + str(response_object.status_code))
@@ -42,7 +42,7 @@ def generate_otp(phone_number):
 
 
 def authenticate_otp(otp, txn_id):
-    url = "https://cdn-api.co-vin.in/api/v2/auth/public/confirmOTP"
+    url = "https://cdn-api.co-vin.in/api/v2/auth/confirmOTP"
     headers = {
         "Accept-Language": "en-US",
         "Accept": "application/json",
@@ -55,7 +55,7 @@ def authenticate_otp(otp, txn_id):
         "Cache-Control": "no-cache",
         "content-type": "application/json"
     }
-    body = {'otp': '%s' % otp, 'txnId': '%s' % txn_id}
+    body = {'otp': '%s' % otp, 'txnId': '%s' % txn_id, 'secret': 'U2FsdGVkX1/fM1pnXpJIcrFeq3mieB4Z6lF/P9r7jA1AEsRp6gTa7mA7M+N/xXgHEeMYp8L5uTGMuQvTipP5PA=='}
 
     response_object = requests.post(url, data=json.dumps(body), headers=headers)
     print(response_object.request.body)
